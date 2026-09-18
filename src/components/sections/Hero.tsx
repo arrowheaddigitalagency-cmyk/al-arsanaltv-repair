@@ -7,8 +7,11 @@ import { siteConfig } from "@/config/site";
 import Button from "@/components/ui/Button";
 import { CheckCircle2, ChevronDown } from "lucide-react";
 
+import { usePreloader } from "@/context/PreloaderContext";
+
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
+  const { isLoaded } = usePreloader();
 
   const scrollToNext = () => {
     const target = document.getElementById("brands") || document.getElementById("services");
@@ -22,19 +25,31 @@ export default function Hero() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
+    if (!isLoaded) {
+      gsap.set([
+        ".hero-telemetry-badge",
+        ".hero-headline",
+        ".hero-copy",
+        ".hero-cta-box",
+        ".hero-metrics-row",
+        ".hero-visual-container",
+      ], { opacity: 0 });
+      return;
+    }
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-      tl.from(".hero-telemetry-badge", { opacity: 0, y: -8, duration: 0.35 })
-        .from(".hero-headline", { opacity: 0, y: 12, duration: 0.45 }, "-=0.15")
-        .from(".hero-copy", { opacity: 0, y: 10, duration: 0.4 }, "-=0.2")
-        .from(".hero-cta-box", { opacity: 0, y: 10, duration: 0.4 }, "-=0.2")
-        .from(".hero-metrics-row", { opacity: 0, y: 8, duration: 0.35 }, "-=0.15")
-        .from(".hero-visual-container", { opacity: 0, scale: 0.98, duration: 0.5 }, "-=0.35");
+      tl.fromTo(".hero-telemetry-badge", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 })
+        .fromTo(".hero-headline", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.2")
+        .fromTo(".hero-copy", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45 }, "-=0.25")
+        .fromTo(".hero-cta-box", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45 }, "-=0.25")
+        .fromTo(".hero-metrics-row", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
+        .fromTo(".hero-visual-container", { opacity: 0, scale: 0.96, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.6 }, "-=0.35");
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isLoaded]);
 
   return (
     <section

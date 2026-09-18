@@ -1,4 +1,3 @@
-import Preloader from "@/components/layout/Preloader";
 import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
 import MobileActionBar from "@/components/layout/MobileActionBar";
@@ -23,10 +22,7 @@ import FAQ from "@/components/sections/FAQ";
 export default function HomePage() {
   return (
     <>
-      {/* 1. Technical Diagnostic Preloader */}
-      <Preloader />
-
-      {/* 2. Top Telemetry Urgency Bar */}
+      {/* 1. Top Telemetry Urgency Bar */}
       <TopBar />
 
       {/* 3. Sticky Glassmorphic Navigation */}
