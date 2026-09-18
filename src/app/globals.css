@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), var(--font-montserrat), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-montserrat), var(--font-poppins), sans-serif;
+  --font-body: var(--font-poppins), sans-serif;
+  --font-mono: var(--font-montserrat), var(--font-poppins), sans-serif;
+}
+
+@layer base {
+  :root {
+    --electric-blue: #0056ff;
+    --electric-blue-hover: #0046d1;
+    --electric-blue-light: #eff4ff;
+    --deep-navy: #070e1d;
+    --navy-surface: #0f1c35;
+    --navy-border: #1e2e4f;
+    --whatsapp-green: #25d366;
+    --whatsapp-dark: #128c7e;
+  }
+
+  *, *::before, *::after {
+    font-family: var(--font-poppins), var(--font-montserrat), sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-poppins), var(--font-montserrat), sans-serif;
+  }
+
+  body {
+    font-family: var(--font-poppins), var(--font-montserrat), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: var(--font-montserrat), var(--font-poppins), system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  code, kbd, samp, pre, .font-mono {
+    font-family: var(--font-montserrat), var(--font-poppins), sans-serif !important;
+  }
+
+  /* Focus ring for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--electric-blue);
+    outline-offset: 2px;
+  }
+}
+
+/* TV Technical Scanline Effect */
+.tv-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+}
+
+/* Subtle Technical Grid Motif */
+.tech-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 86, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 86, 255, 0.05) 1px, transparent 1px);
+}
+
+.tech-grid-dark {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Lenis Smooth Scroll Optimization */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Infinite Brand Marquee (Hardware-Accelerated 3D Transforms) */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Radar pulse wave for dark conversion bars */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.animate-radar {
+  animation: radar-pulse 4s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+
+@keyframes orbit-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 5s ease-in-out infinite;
+}
+
+.animate-orbit-slow {
+  animation: orbit-slow 40s linear infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 1.8s ease-in-out infinite;
+}
+
+/* Concentric Diagnostic Ripple Rings Effect (from Image 3) */
+.concentric-rings-bg {
+  background-image: radial-gradient(circle at center, rgba(0, 82, 234, 0.08) 0, rgba(0, 82, 234, 0.08) 1px, transparent 1px, transparent 60px, rgba(0, 82, 234, 0.06) 61px, transparent 62px, transparent 120px, rgba(0, 82, 234, 0.05) 121px, transparent 122px, transparent 180px, rgba(0, 82, 234, 0.04) 181px, transparent 182px, transparent 240px, rgba(0, 82, 234, 0.035) 241px, transparent 242px, transparent 300px, rgba(0, 82, 234, 0.03) 301px, transparent 302px, transparent 360px, rgba(0, 82, 234, 0.02) 361px, transparent 362px);
+}
+
+/* Safe area bottom padding on mobile for the fixed action bar */
+.pb-mobile-bar {
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 1024px) {
+  .pb-mobile-bar {
+    padding-bottom: 0;
+  }
+}

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070D1A"/>
+      <stop offset="50%" stop-color="#0B152B"/>
+      <stop offset="100%" stop-color="#060A14"/>
+    </linearGradient>
+    <linearGradient id="blueGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0062FF"/>
+      <stop offset="100%" stop-color="#00E5FF"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EF4444"/>
+    </linearGradient>
+    <radialGradient id="qdDotGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0062FF" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1E293B" stroke-width="0.75" opacity="0.6"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+  <rect width="800" height="600" fill="url(#grid)"/>
+
+  <!-- Technical Telemetry Header -->
+  <text x="40" y="55" fill="#38BDF8" font-family="monospace" font-size="12" letter-spacing="2">ROYALTECHLABS // QUANTUM-DOT SPECTRUM ANALYZER</text>
+  <text x="640" y="55" fill="#10B981" font-family="monospace" font-size="12">STATUS: CALIBRATED</text>
+  <line x1="40" y1="70" x2="760" y2="70" stroke="#1E3A8A" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <!-- TV Frame Bezel Outline -->
+  <rect x="120" y="110" width="560" height="340" rx="14" fill="#030712" stroke="#334155" stroke-width="4"/>
+  <rect x="130" y="120" width="540" height="320" rx="8" fill="#020617"/>
+
+  <!-- Quantum Dot Lattice Matrix Visual -->
+  <g opacity="0.85">
+    <circle cx="240" cy="220" r="38" fill="url(#qdDotGlow)"/>
+    <circle cx="240" cy="220" r="14" fill="#00E5FF"/>
+    <circle cx="340" cy="200" r="28" fill="#10B981" opacity="0.7"/>
+    <circle cx="440" cy="240" r="32" fill="#F59E0B" opacity="0.8"/>
+    <circle cx="540" cy="210" r="36" fill="#EF4444" opacity="0.8"/>
+    <circle cx="300" cy="310" r="24" fill="#6366F1" opacity="0.75"/>
+    <circle cx="420" cy="330" r="42" fill="url(#qdDotGlow)"/>
+    <circle cx="420" cy="330" r="16" fill="#0062FF"/>
+    <circle cx="510" cy="310" r="26" fill="#EC4899" opacity="0.7"/>
+  </g>
+
+  <!-- Connection Lines representing Quantum Lattice -->
+  <path d="M240 220 L340 200 L440 240 L540 210 M340 200 L300 310 L420 330 L510 310 L540 210 M240 220 L300 310 M440 240 L420 330" 
+        fill="none" stroke="#00E5FF" stroke-width="1.5" stroke-dasharray="3 3" opacity="0.6"/>
+
+  <!-- Waveform HUD at bottom of TV screen -->
+  <path d="M 150 400 Q 200 360, 250 400 T 350 400 T 450 380 T 550 400 T 650 390" 
+        fill="none" stroke="url(#blueGlow)" stroke-width="2.5"/>
+  <path d="M 150 410 Q 200 390, 250 410 T 350 410 T 450 400 T 550 410 T 650 405" 
+        fill="none" stroke="url(#goldGlow)" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Crosshair Diagnostic Node -->
+  <g transform="translate(420, 330)">
+    <circle cx="0" cy="0" r="26" fill="none" stroke="#00E5FF" stroke-width="1.5"/>
+    <line x1="-34" y1="0" x2="34" y2="0" stroke="#00E5FF" stroke-width="1"/>
+    <line x1="0" y1="-34" x2="0" y2="34" stroke="#00E5FF" stroke-width="1"/>
+    <text x="32" y="-12" fill="#00E5FF" font-family="monospace" font-size="11" font-weight="bold">DCI-P3 99.4%</text>
+    <text x="32" y="4" fill="#94A3B8" font-family="monospace" font-size="9">LOCAL DIMMING OK</text>
+  </g>
+
+  <!-- Technical Telemetry Footer Card -->
+  <rect x="120" y="475" width="560" height="70" rx="10" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+  <text x="145" y="505" fill="#F8FAFC" font-family="sans-serif" font-size="13" font-weight="bold">QLED &amp; Mini-LED Precision Backlight Calibration</text>
+  <text x="145" y="525" fill="#94A3B8" font-family="sans-serif" font-size="11">Resolving HDR zone flickering, 120Hz HDMI 2.1 sync faults &amp; quantum-filter luminance loss</text>
+  <rect x="580" y="493" width="80" height="26" rx="6" fill="#0062FF"/>
+  <text x="620" y="510" fill="#FFFFFF" font-family="sans-serif" font-size="10" font-weight="bold" text-anchor="middle">4K LAB OK</text>
+</svg>
