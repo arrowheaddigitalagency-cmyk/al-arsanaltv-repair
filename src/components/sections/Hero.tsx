@@ -6,26 +6,12 @@ import gsap from "gsap";
 import { siteConfig } from "@/config/site";
 import Button from "@/components/ui/Button";
 
-import { usePreloader } from "@/context/PreloaderContext";
-
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const { isLoaded } = usePreloader();
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
-
-    if (!isLoaded) {
-      gsap.set([
-        ".hero-telemetry-badge",
-        ".hero-headline",
-        ".hero-copy",
-        ".hero-cta-box",
-        ".hero-visual-container",
-      ], { opacity: 0 });
-      return;
-    }
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
@@ -38,7 +24,7 @@ export default function Hero() {
     }, heroRef);
 
     return () => ctx.revert();
-  }, [isLoaded]);
+  }, []);
 
   return (
     <section

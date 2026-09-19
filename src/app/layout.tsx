@@ -3,8 +3,7 @@ import { Poppins, Montserrat } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
 import SmoothScroll from "@/components/ui/SmoothScroll";
-import Preloader from "@/components/layout/Preloader";
-import { PreloaderProvider } from "@/context/PreloaderContext";
+
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -194,10 +193,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900 selection:bg-[#0052EA] selection:text-white">
-        <PreloaderProvider>
-          <Preloader />
-          <SmoothScroll>{children}</SmoothScroll>
-        </PreloaderProvider>
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
