@@ -27,8 +27,12 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : 
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : siteConfig.url));
+
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: new URL(siteUrl),
   icons: {
     icon: [
       { url: "/images/rtl-favicon.png", sizes: "any" },
@@ -66,21 +70,21 @@ export const metadata: Metadata = {
     email: true,
   },
   alternates: {
-    canonical: siteConfig.url,
+    canonical: siteUrl,
   },
   openGraph: {
     title: `${siteConfig.name} - 24/7 Doorstep TV Repair in Dubai, Sharjah & Ajman`,
     description: siteConfig.description,
-    url: siteConfig.url,
+    url: siteUrl,
     siteName: siteConfig.name,
     locale: "en_AE",
     type: "website",
     images: [
       {
-        url: `${siteConfig.url}/images/hero-technician.jpg`,
+        url: "/images/og-image.jpg",
         width: 1200,
-        height: 630,
-        alt: `${siteConfig.name} Doorstep TV Electronics Technician in UAE`,
+        height: 675,
+        alt: `${siteConfig.name} - Doorstep TV Electronics Technician in UAE`,
       },
     ],
   },
@@ -88,7 +92,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${siteConfig.name} - Doorstep TV Repair Dubai`,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/hero-technician.jpg`],
+    images: ["/images/og-image.jpg"],
   },
   robots: {
     index: true,

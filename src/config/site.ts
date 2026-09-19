@@ -56,7 +56,7 @@ export const siteConfig = {
   legalName: "RoyalTechLabs Electronics LLC",
   domain: "royaltechlabs.ae",
   url: "https://royaltechlabs.ae",
-  ogImage: "/images/hero-technician.jpg",
+  ogImage: "/images/og-image.jpg",
   description: "RoyalTechLabs brings laboratory-grade doorstep TV repair directly to your home in Dubai, Sharjah, and Ajman. Precision component-level diagnostics for OLED, QLED, LED, and 4K Smart TVs from Samsung, LG, Sony, TCL and all major brands.",
   
   // Centralized Contact Info (Configurable)
