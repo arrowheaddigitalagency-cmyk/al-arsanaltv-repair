@@ -1,26 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import Button from "@/components/ui/Button";
-import { MapPin, Search, CheckCircle, Radio } from "lucide-react";
+import { MapPin, Radio } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 
 export default function ServiceAreas() {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filteredGroups = siteConfig.serviceAreas.map((group) => {
-    const matchingAreas = group.areas.filter((area) =>
-      area.toLowerCase().includes(searchQuery.toLowerCase().trim())
-    );
-    return {
-      ...group,
-      areas: matchingAreas,
-    };
-  });
-
-  const totalMatches = filteredGroups.reduce((acc, g) => acc + g.areas.length, 0);
-
   return (
     <section id="areas" className="py-16 sm:py-24 bg-white border-b border-slate-200 relative overflow-hidden">
       {/* Ambient Blue Glow Orbs & Light Tech Grid */}
@@ -31,43 +16,24 @@ export default function ServiceAreas() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-display font-bold tracking-wider mb-3">
             <Radio className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
-            <span>DISPATCH NETWORK</span>
+            <span>COVERAGE ALL OVER UAE</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight font-display">
-            Doorstep TV Repair Across <br />
-            <span className="text-[#0052EA]">Dubai, Sharjah &amp; Ajman</span>
+            Doorstep TV Repair With <br />
+            <span className="text-[#0052EA]">Coverage All Over UAE</span>
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-slate-600 font-sans">
-            RoyalTechLabs mobile lab units are stationed across key metropolitan clusters for rapid in-home arrival.
+            RoyalTechLabs mobile diagnostic fleet provides comprehensive doorstep TV repair coverage all over UAE — including Dubai, Sharjah, Ajman, and surrounding areas with rapid in-home arrival.
           </p>
-        </div>
-
-        {/* Live Search Console */}
-        <div className="max-w-md mx-auto mb-12">
-          <div className="relative flex items-center">
-            <Search className="absolute left-4 w-4 h-4 text-slate-400 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search your area (e.g. Marina, Al Majaz, Nuaimiya)..."
-              className="w-full pl-11 pr-4 py-3 rounded-2xl border border-slate-300 bg-slate-50 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0052EA] focus:bg-white shadow-xs font-sans"
-            />
-          </div>
-          {searchQuery && (
-            <p className="text-xs text-slate-500 mt-2 text-center font-display font-semibold">
-              Found {totalMatches} matching location{totalMatches === 1 ? "" : "s"}
-            </p>
-          )}
         </div>
 
         {/* Emirate Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {filteredGroups.map((group) => (
+          {siteConfig.serviceAreas.map((group) => (
             <div
               key={group.emirate}
               className="rounded-3xl bg-slate-50 border border-slate-200 p-6 sm:p-7 shadow-sm hover:border-blue-300 hover:shadow-md transition-all flex flex-col justify-between"
@@ -94,24 +60,18 @@ export default function ServiceAreas() {
 
                 {/* Area Tags with Live Dot Blinker */}
                 <div className="flex flex-wrap gap-2">
-                  {group.areas.length > 0 ? (
-                    group.areas.map((area, idx) => (
-                      <span
-                        key={idx}
-                        className="inline-flex items-center gap-2 text-xs font-medium px-2.5 py-1 rounded-xl bg-white text-slate-800 border border-slate-200/80 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all font-sans"
-                      >
-                        <span className="relative flex h-2 w-2 shrink-0">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                        </span>
-                        <span>{area}</span>
+                  {group.areas.map((area, idx) => (
+                    <span
+                      key={idx}
+                      className="inline-flex items-center gap-2 text-xs font-medium px-2.5 py-1 rounded-xl bg-white text-slate-800 border border-slate-200/80 shadow-2xs hover:border-blue-300 hover:shadow-xs transition-all font-sans"
+                    >
+                      <span className="relative flex h-2 w-2 shrink-0">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                       </span>
-                    ))
-                  ) : (
-                    <p className="text-xs text-slate-400 italic py-2 font-sans">
-                      No direct results for &quot;{searchQuery}&quot; in {group.emirate}.
-                    </p>
-                  )}
+                      <span>{area}</span>
+                    </span>
+                  ))}
                 </div>
               </div>
 
@@ -138,7 +98,7 @@ export default function ServiceAreas() {
             Can&apos;t see your specific community or building?
           </h4>
           <p className="text-xs sm:text-sm text-slate-300 mt-1.5 max-w-lg mx-auto leading-relaxed">
-            RoyalTechLabs covers virtually all residential areas in Dubai, Sharjah, and Ajman. Send your location pin on WhatsApp for an instant technician ETA.
+            RoyalTechLabs provides television diagnostic &amp; repair coverage all over UAE. Send your location pin on WhatsApp for an instant technician ETA.
           </p>
           <div className="mt-5 flex flex-col sm:flex-row items-center justify-center gap-3">
             <Button

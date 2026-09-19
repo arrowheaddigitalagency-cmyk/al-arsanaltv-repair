@@ -189,22 +189,25 @@ export default function LabDiagnosticMoment() {
         </div>
 
         {/* Subsystem Interactive Selector Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-          {subsystems.map((sub) => {
+        <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 mb-6">
+          {subsystems.map((sub, idx) => {
             const isSelected = sub.id === activeId;
             const SubIcon = sub.icon;
+            const isLastOdd = idx === subsystems.length - 1 && subsystems.length % 2 !== 0;
             return (
               <button
                 key={sub.id}
                 onClick={() => setActiveId(sub.id)}
-                className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition-all ${
+                className={`inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all ${
+                  isLastOdd ? "col-span-2 sm:col-auto" : ""
+                } ${
                   isSelected
                     ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30 border border-cyan-400 scale-102"
                     : "bg-slate-900/90 text-slate-300 hover:text-white hover:bg-slate-800 border border-slate-700/80"
                 }`}
               >
-                <SubIcon className={`w-3.5 h-3.5 ${isSelected ? "text-cyan-200" : "text-slate-400"}`} />
-                <span>{sub.label}</span>
+                <SubIcon className={`w-3.5 h-3.5 shrink-0 ${isSelected ? "text-cyan-200" : "text-slate-400"}`} />
+                <span className="truncate">{sub.label}</span>
               </button>
             );
           })}
@@ -251,6 +254,7 @@ export default function LabDiagnosticMoment() {
               {/* Physical Subsystem Pins overlaid directly on the workbench hardware */}
               {subsystems.map((sub) => {
                 const isSelected = sub.id === activeId;
+                const isRightSide = parseInt(sub.pin.left) >= 48;
                 return (
                   <button
                     key={sub.id}
@@ -278,12 +282,14 @@ export default function LabDiagnosticMoment() {
                         +
                       </span>
 
-                      {/* Tooltip Label */}
+                      {/* Tooltip Label (Dynamically placed left or right so it NEVER overflows the container) */}
                       <span
-                        className={`absolute left-7 top-1/2 -translate-y-1/2 whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase backdrop-blur-md transition-opacity ${
+                        className={`absolute top-1/2 -translate-y-1/2 whitespace-nowrap px-2.5 py-1 rounded text-[10px] font-mono font-bold tracking-wider uppercase backdrop-blur-md transition-opacity pointer-events-none ${
+                          isRightSide ? "right-8 text-right" : "left-8 text-left"
+                        } ${
                           isSelected
-                            ? "bg-cyan-950/90 text-cyan-300 border border-cyan-400/50 opacity-100 shadow-md"
-                            : "bg-slate-950/80 text-slate-300 border border-slate-700 opacity-0 group-hover:opacity-100"
+                            ? "bg-cyan-950/95 text-cyan-300 border border-cyan-400/60 opacity-100 shadow-lg shadow-cyan-950/80"
+                            : "bg-slate-950/85 text-slate-300 border border-slate-700 opacity-0 group-hover:opacity-100"
                         }`}
                       >
                         {sub.label}

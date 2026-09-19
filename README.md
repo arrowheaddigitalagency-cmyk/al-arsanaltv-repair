@@ -97,5 +97,5 @@ npm run start
 
 - **Company**: RoyalTechLabs Electronics LLC
 - **Workshop**: Industrial Area 6 behind Macro Emirates, Sharjah, UAE
-- **Phone / WhatsApp**: +971 0564704098
+- **Phone / WhatsApp**: +971 56 470 4098
 - **Email**: royaltechlabs9@gmail.com

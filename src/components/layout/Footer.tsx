@@ -10,12 +10,12 @@ export default function Footer() {
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-blue-900/10 blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-12 sm:pb-14 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-28 sm:pb-14 relative z-10">
         
         {/* ========================================================================= */}
         {/* Top Feature Banner: "Still Having TV Problems?" (Matching user design)    */}
         {/* ========================================================================= */}
-        <div className="relative rounded-3xl bg-[#091D4C] border border-blue-400/25 p-7 sm:p-9 lg:p-10 mb-14 shadow-2xl overflow-hidden">
+        <div className="relative rounded-3xl bg-[#091D4C] border border-blue-400/25 p-6 sm:p-9 lg:p-10 mb-14 shadow-2xl overflow-hidden">
           {/* Subtle inner radial glow */}
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -35,14 +35,14 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Dual Action Buttons on Banner */}
-            <div className="flex flex-wrap sm:flex-nowrap items-center gap-3.5 shrink-0">
+            {/* Dual Action Buttons on Banner - Kept in the same line on mobile & desktop */}
+            <div className="grid grid-cols-2 sm:flex sm:flex-row items-center gap-2.5 sm:gap-3.5 w-full lg:w-auto shrink-0">
               <a
                 href={siteConfig.phoneHref}
-                className="flex items-center justify-center gap-2 bg-[#0052EA] hover:bg-[#0042BE] text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3 rounded-full shadow-[0_0_25px_rgba(0,82,234,0.7)] hover:shadow-[0_0_35px_rgba(0,82,234,0.9)] transition-all active:scale-95 whitespace-nowrap cursor-pointer font-display"
+                className="flex items-center justify-center gap-1.5 sm:gap-2 bg-[#0052EA] hover:bg-[#0042BE] text-white font-bold text-xs sm:text-base px-3 sm:px-7 py-2.5 sm:py-3 rounded-full shadow-[0_0_25px_rgba(0,82,234,0.7)] hover:shadow-[0_0_35px_rgba(0,82,234,0.9)] transition-all active:scale-95 whitespace-nowrap cursor-pointer font-display text-center"
                 aria-label={`Call ${siteConfig.phoneDisplay} now`}
               >
-                <Phone className="w-4 h-4 fill-current" />
+                <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0" />
                 <span>Call Now</span>
               </a>
 
@@ -50,10 +50,10 @@ export default function Footer() {
                 href={siteConfig.getWhatsAppLink("Hi RoyalTechLabs, I need a free TV checkup at my home.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm sm:text-base px-6 sm:px-7 py-3 rounded-full shadow-[0_0_22px_rgba(37,211,102,0.45)] hover:shadow-[0_0_32px_rgba(37,211,102,0.65)] transition-all active:scale-95 whitespace-nowrap cursor-pointer font-display"
+                className="flex items-center justify-center gap-1.5 sm:gap-2 bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-xs sm:text-base px-3 sm:px-7 py-2.5 sm:py-3 rounded-full shadow-[0_0_22px_rgba(37,211,102,0.45)] hover:shadow-[0_0_32px_rgba(37,211,102,0.65)] transition-all active:scale-95 whitespace-nowrap cursor-pointer font-display text-center"
                 aria-label="WhatsApp RoyalTechLabs"
               >
-                <WhatsAppIcon className="w-4 h-4 fill-current" />
+                <WhatsAppIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current shrink-0" />
                 <span>WhatsApp</span>
               </a>
             </div>
@@ -224,21 +224,21 @@ export default function Footer() {
         {/* ========================================================================= */}
         {/* Bottom Copyright & Legal Links                                            */}
         {/* ========================================================================= */}
-        <div className="mt-12 pt-8 border-t border-blue-950/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-medium">
+        <div className="mt-12 pt-8 border-t border-blue-950/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-medium text-center md:text-left">
           <p>
             &copy; {new Date().getFullYear()} by {siteConfig.name}. All Rights Reserved.
           </p>
 
-          <div className="flex items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-slate-200 transition-colors">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6">
+            <Link href="/privacy-policy" className="hover:text-slate-200 transition-colors py-1">
               Privacy Policy
             </Link>
             <span>•</span>
-            <Link href="/terms-and-conditions" className="hover:text-slate-200 transition-colors">
+            <Link href="/terms-and-conditions" className="hover:text-slate-200 transition-colors py-1">
               Terms &amp; Conditions
             </Link>
             <span>•</span>
-            <a href="#contact" className="hover:text-slate-200 transition-colors">
+            <a href="#contact" className="hover:text-slate-200 transition-colors py-1">
               Contact Us
             </a>
           </div>

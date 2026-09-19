@@ -49,6 +49,41 @@ export default function Testimonials() {
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 45) {
+      handleNext();
+    } else if (diff < -45) {
+      handlePrev();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+    setTimeout(() => setIsPaused(false), 2000);
+  };
+
+  const getTranslateStyle = () => {
+    if (itemsPerView === 1) {
+      return `translateX(calc(-${currentIndex} * (100% + 20px)))`;
+    } else if (itemsPerView === 2) {
+      return `translateX(calc(-${currentIndex} * (50% + 12px)))`;
+    } else {
+      return `translateX(calc(-${currentIndex} * (33.333% + 8px)))`;
+    }
+  };
+
   return (
     <section id="reviews" className="py-16 sm:py-24 bg-white border-b border-slate-200 relative overflow-hidden">
       {/* Concentric Diagnostic Ripple Waves in Background (Matching Image 3) */}
@@ -72,7 +107,7 @@ export default function Testimonials() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight font-display">
               Trusted in Living Rooms <br />
-              <span className="text-[#0052EA]">Across Dubai, Sharjah &amp; Ajman</span>
+              <span className="text-[#0052EA]">Across Dubai, Sharjah, Ajman &amp; All UAE</span>
             </h2>
           </div>
 
@@ -98,16 +133,19 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Carousel Container (with Pause on Hover) */}
+        {/* Carousel Container (with Pause on Hover and Touch Support) */}
         <div
           className="relative overflow-hidden py-2 -mx-2 px-2"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <div
             className="flex transition-transform duration-500 ease-out gap-5 sm:gap-6"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerView + (itemsPerView > 1 ? 0.6 : 0))}%)`,
+              transform: getTranslateStyle(),
             }}
           >
             {testimonials.map((review) => {

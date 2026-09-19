@@ -37,112 +37,8 @@ export default function ServicesShowcase() {
           </p>
         </div>
 
-        {/* 1. Asymmetric Featured Spotlights (Alternating Image & Content) */}
-        <div className="space-y-8 mb-12">
-          {featuredServices.map((service, index) => {
-            const isReversed = index % 2 !== 0;
-            return (
-              <div
-                key={service.id}
-                className={`rounded-3xl bg-white border border-slate-200 shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 items-center group transition-all duration-300 hover:border-blue-300 hover:shadow-xl`}
-              >
-                {/* Visual Half */}
-                <div
-                  className={`lg:col-span-6 relative aspect-[16/10] sm:aspect-[16/11] lg:aspect-auto lg:h-full min-h-[300px] overflow-hidden bg-slate-900 ${
-                    isReversed ? "lg:order-2" : "lg:order-1"
-                  }`}
-                >
-                  <Image
-                    src={service.imageSrc}
-                    alt={service.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {/* Subtle TV scanline overlay */}
-                  <div className="absolute inset-0 tv-scanlines pointer-events-none opacity-20" />
-
-                  {/* Corner Badge */}
-                  <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#050B14]/85 backdrop-blur-md text-cyan-300 border border-cyan-400/40 text-xs font-display font-bold uppercase tracking-wider">
-                      <span>{service.badge || "SPECIALIZED"}</span>
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-4 right-4 bg-slate-950/80 backdrop-blur-sm px-2.5 py-1 rounded text-[11px] font-display font-semibold text-slate-300 border border-slate-700">
-                    {service.turnaround}
-                  </div>
-                </div>
-
-                {/* Content Half */}
-                <div
-                  className={`lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between ${
-                    isReversed ? "lg:order-1" : "lg:order-2"
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between text-xs text-slate-500 font-display font-semibold mb-2">
-                      <span>PROTOCOL: {service.id.toUpperCase()}</span>
-                      <span className="text-emerald-600 font-semibold flex items-center gap-1">
-                        <ShieldCheck className="w-3.5 h-3.5" />
-                        Doorstep Service
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight group-hover:text-[#0052EA] transition-colors font-display">
-                      {service.title}
-                    </h3>
-
-                    <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
-                      {service.longDesc}
-                    </p>
-
-                    {/* Common Fixes */}
-                    <div className="mt-6 pt-5 border-t border-slate-100">
-                      <p className="text-xs font-display font-bold text-slate-400 uppercase tracking-wider mb-2.5">
-                        Typical Doorstep Technical Fixes:
-                      </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {service.commonFixes.map((fix, idx) => (
-                          <div key={idx} className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                            <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                            <span>{fix}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Dual Conversion CTA */}
-                  <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-3">
-                    <Button
-                      variant="call"
-                      size="md"
-                      source="service_card"
-                      className="w-full sm:w-auto flex-1"
-                    >
-                      Call Technician
-                    </Button>
-
-                    <Button
-                      variant="whatsapp"
-                      size="md"
-                      source="service_card"
-                      whatsappMessage={`Hi RoyalTechLabs, I need expert help with ${service.title}.`}
-                      className="w-full sm:w-auto flex-1"
-                    >
-                      WhatsApp Issue
-                    </Button>
-                  </div>
-
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* 2. Specialized Repair Subsystems Grid */}
-        <div className="mt-12">
+        {/* 1. Component & Subsystem Laboratories Grid (First) */}
+        <div className="mb-14 sm:mb-18">
           <div className="mb-6 flex items-center justify-between">
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight font-display">
               Component &amp; Subsystem Laboratories
@@ -218,6 +114,121 @@ export default function ServicesShowcase() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* 2. Comprehensive Display Diagnostic Protocols (Featured Services) */}
+        <div>
+          <div className="mb-6 flex items-center justify-between">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight font-display">
+              Display Technology &amp; Screen Diagnostics
+            </h3>
+            <span className="text-xs font-display font-semibold text-slate-500 hidden sm:inline">
+              OLED • QLED • MINI-LED
+            </span>
+          </div>
+
+          <div className="space-y-8">
+            {featuredServices.map((service, index) => {
+              const isReversed = index % 2 !== 0;
+              return (
+                <div
+                  key={service.id}
+                  className={`rounded-3xl bg-white border border-slate-200 shadow-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 items-center group transition-all duration-300 hover:border-blue-300 hover:shadow-xl`}
+                >
+                  {/* Visual Half */}
+                  <div
+                    className={`lg:col-span-6 relative aspect-[16/10] sm:aspect-[16/11] lg:aspect-auto lg:h-full min-h-[300px] overflow-hidden bg-slate-900 ${
+                      isReversed ? "lg:order-2" : "lg:order-1"
+                    }`}
+                  >
+                    <Image
+                      src={service.imageSrc}
+                      alt={service.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    />
+                    {/* Subtle TV scanline overlay */}
+                    <div className="absolute inset-0 tv-scanlines pointer-events-none opacity-20" />
+
+                    {/* Corner Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#050B14]/85 backdrop-blur-md text-cyan-300 border border-cyan-400/40 text-xs font-display font-bold uppercase tracking-wider">
+                        <span>{service.badge || "SPECIALIZED"}</span>
+                      </span>
+                    </div>
+
+                    <div className="absolute bottom-4 right-4 bg-slate-950/80 backdrop-blur-sm px-2.5 py-1 rounded text-[11px] font-display font-semibold text-slate-300 border border-slate-700">
+                      {service.turnaround}
+                    </div>
+                  </div>
+
+                  {/* Content Half */}
+                  <div
+                    className={`lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between ${
+                      isReversed ? "lg:order-1" : "lg:order-2"
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between text-xs text-slate-500 font-display font-semibold mb-2">
+                        <span>PROTOCOL: {service.id.toUpperCase()}</span>
+                        <span className="text-emerald-600 font-semibold flex items-center gap-1">
+                          <ShieldCheck className="w-3.5 h-3.5" />
+                          Doorstep Service
+                        </span>
+                      </div>
+
+                      <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight group-hover:text-[#0052EA] transition-colors font-display">
+                        {service.title}
+                      </h3>
+
+                      <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-sans">
+                        {service.longDesc}
+                      </p>
+
+                      {/* Common Fixes */}
+                      <div className="mt-6 pt-5 border-t border-slate-100">
+                        <p className="text-xs font-display font-bold text-slate-400 uppercase tracking-wider mb-2.5">
+                          Typical Doorstep Technical Fixes:
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {service.commonFixes.map((fix, idx) => (
+                            <div key={idx} className="flex items-center gap-2 text-xs font-medium text-slate-700">
+                              <Check className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                              <span>{fix}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Dual Conversion CTA */}
+                    <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-3">
+                      <Button
+                        variant="call"
+                        size="md"
+                        source="service_card"
+                        className="w-full sm:w-auto flex-1"
+                      >
+                        Call Technician
+                      </Button>
+
+                      <Button
+                        variant="whatsapp"
+                        size="md"
+                        source="service_card"
+                        whatsappMessage={`Hi RoyalTechLabs, I need expert help with ${service.title}.`}
+                        className="w-full sm:w-auto flex-1"
+                      >
+                        WhatsApp Issue
+                      </Button>
+                    </div>
+
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 

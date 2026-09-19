@@ -5,21 +5,12 @@ import Image from "next/image";
 import gsap from "gsap";
 import { siteConfig } from "@/config/site";
 import Button from "@/components/ui/Button";
-import { CheckCircle2, ChevronDown } from "lucide-react";
 
 import { usePreloader } from "@/context/PreloaderContext";
 
 export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { isLoaded } = usePreloader();
-
-  const scrollToNext = () => {
-    const target = document.getElementById("brands") || document.getElementById("services");
-    if (target) {
-      const top = target.getBoundingClientRect().top + window.scrollY - 65;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -31,7 +22,6 @@ export default function Hero() {
         ".hero-headline",
         ".hero-copy",
         ".hero-cta-box",
-        ".hero-metrics-row",
         ".hero-visual-container",
       ], { opacity: 0 });
       return;
@@ -44,7 +34,6 @@ export default function Hero() {
         .fromTo(".hero-headline", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.2")
         .fromTo(".hero-copy", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45 }, "-=0.25")
         .fromTo(".hero-cta-box", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45 }, "-=0.25")
-        .fromTo(".hero-metrics-row", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
         .fromTo(".hero-visual-container", { opacity: 0, scale: 0.96, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.6 }, "-=0.35");
     }, heroRef);
 
@@ -78,14 +67,19 @@ export default function Hero() {
           {/* LEFT: 58% Hierarchy - Compact Editorial Copy, Frosted Badge & High-Conversion CTAs */}
           <div className="lg:col-span-7 flex flex-col items-start">
             
-            {/* Glassy Telemetry Status Pill */}
-            <div className="hero-telemetry-badge mb-2 sm:mb-2.5">
+            {/* Glassy Telemetry Status Pill & Limited Offer */}
+            <div className="hero-telemetry-badge mb-2 sm:mb-2.5 flex flex-wrap items-center gap-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/85 backdrop-blur-md border border-blue-200/80 text-[#0052EA] text-[10.5px] font-display font-bold shadow-xs tracking-wider">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0052EA]"></span>
                 </span>
                 <span>ROYALTECHLABS // MOBILE DIAGNOSTIC FLEET ON-CALL</span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-800 text-[10.5px] font-display font-bold shadow-xs tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <span>SPECIAL: UP TO 20% OFF TODAY</span>
               </div>
             </div>
 
@@ -103,44 +97,31 @@ export default function Hero() {
             </p>
 
             {/* Primary Conversion Action Group */}
-            <div className="hero-cta-box mt-3 sm:mt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
-              <Button
-                variant="call"
-                size="md"
-                source="hero_primary"
-                className="text-xs sm:text-sm py-2.5 px-5 shadow-lg shadow-blue-500/25 border border-blue-400/40"
-              >
-                CALL TECHNICIAN • {siteConfig.phoneDisplay}
-              </Button>
+            <div className="hero-cta-box mt-3 sm:mt-4 flex flex-col items-start gap-2 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 w-full sm:w-auto">
+                <Button
+                  variant="call"
+                  size="md"
+                  source="hero_primary"
+                  className="text-xs sm:text-sm py-2.5 px-5 shadow-lg shadow-blue-500/25 border border-blue-400/40"
+                >
+                  CALL TECHNICIAN • {siteConfig.phoneDisplay}
+                </Button>
 
-              <Button
-                variant="whatsapp"
-                size="md"
-                source="hero_secondary"
-                whatsappMessage="Hi RoyalTechLabs, I need urgent doorstep repair for my TV in Dubai/Sharjah/Ajman."
-                className="text-xs sm:text-sm py-2.5 px-5 shadow-lg shadow-emerald-500/25 border border-emerald-400/40"
-              >
-                WHATSAPP DIAGNOSIS
-              </Button>
-            </div>
+                <Button
+                  variant="whatsapp"
+                  size="md"
+                  source="hero_secondary"
+                  whatsappMessage="Hi RoyalTechLabs, I need urgent doorstep repair for my TV in Dubai/Sharjah/Ajman."
+                  className="text-xs sm:text-sm py-2.5 px-5 shadow-lg shadow-emerald-500/25 border border-emerald-400/40"
+                >
+                  WHATSAPP DIAGNOSIS
+                </Button>
+              </div>
 
-            {/* Micro Trust & Telemetry Checklist */}
-            <div className="hero-metrics-row mt-3.5 pt-2.5 border-t border-blue-100/90 w-full grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] sm:text-xs font-semibold text-slate-700">
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#0052EA] shrink-0" />
-                <span>30–60m Arrival</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#0052EA] shrink-0" />
-                <span>100% Home Visit</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#0052EA] shrink-0" />
-                <span>Original Parts</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-[#0052EA] shrink-0" />
-                <span>Written Warranty</span>
+              <div className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-600 pt-0.5">
+                <span className="text-amber-600 font-bold">★ Limited Offer:</span>
+                <span>Up to 20% OFF on all component repairs across UAE</span>
               </div>
             </div>
 
@@ -167,18 +148,6 @@ export default function Hero() {
 
         </div>
 
-        {/* Smooth Scroll Navigation to Second Section */}
-        <div className="mt-3 sm:mt-4 flex justify-center relative z-20">
-          <button
-            type="button"
-            onClick={scrollToNext}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/80 hover:bg-white border border-blue-200/70 text-slate-600 hover:text-[#0052EA] text-[10.5px] font-display font-bold tracking-wider shadow-2xs transition-all cursor-pointer group active:scale-95"
-            aria-label="Scroll smoothly to manufacturer brand telemetry"
-          >
-            <span>EXPLORE SERVICES</span>
-            <ChevronDown className="w-3.5 h-3.5 text-[#0052EA] animate-bounce-gentle group-hover:translate-y-0.5 transition-transform" />
-          </button>
-        </div>
       </div>
     </section>
   );

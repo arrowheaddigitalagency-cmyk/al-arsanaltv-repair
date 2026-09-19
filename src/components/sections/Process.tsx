@@ -130,41 +130,41 @@ export default function Process() {
                   className={`relative flex flex-col bg-white rounded-3xl p-7 sm:p-8 border border-slate-200 shadow-xl shadow-blue-500/5 hover:border-blue-400 hover:shadow-2xl transition-all duration-300 group backdrop-blur-md ${stickyOffsets[idx] || "lg:sticky lg:top-28"}`}
                 >
                   {/* Step Top Header */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-3.5">
-                      <div className="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#0052EA] group-hover:scale-110 group-hover:bg-[#0052EA] group-hover:text-white transition-all duration-300 shadow-xs">
-                        <Icon className="w-6 h-6" />
+                  <div className="flex items-start justify-between gap-3 mb-4 sm:mb-5">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#0052EA] shrink-0 group-hover:scale-105 group-hover:bg-[#0052EA] group-hover:text-white transition-all duration-300 shadow-xs">
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
 
-                      <div>
-                        <span className="text-[10px] font-display font-bold tracking-widest text-[#0052EA] uppercase block">
+                      <div className="min-w-0">
+                        <span className="text-[10px] sm:text-[10.5px] font-display font-bold tracking-widest text-[#0052EA] uppercase block">
                           {item.label}
                         </span>
-                        <span className="text-xs font-sans font-semibold text-slate-500">
+                        <span className="text-xs font-sans font-semibold text-slate-600 block">
                           {item.highlight}
                         </span>
                       </div>
                     </div>
 
-                    <span className="font-display text-xs font-extrabold px-3 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200 shadow-2xs">
+                    <span className="font-display text-[11px] sm:text-xs font-extrabold px-2.5 py-1 rounded-full bg-slate-100 text-slate-800 border border-slate-200 shadow-2xs shrink-0 whitespace-nowrap">
                       STAGE {item.step}
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-display">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight mb-2.5 font-display">
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal font-sans">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5 font-normal font-sans">
                     {item.description}
                   </p>
 
-                  <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between font-sans">
-                    <span className="text-xs font-display font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200/80">
+                  <div className="mt-auto pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2 font-sans">
+                    <span className="text-xs font-display font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200/80 shrink-0">
                       {item.pill}
                     </span>
 
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#0052EA] group-hover:translate-x-1 transition-transform font-display">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-[#0052EA] group-hover:translate-x-1 transition-transform font-display shrink-0">
                       <span>Certified Doorstep Protocol</span>
                       <ArrowRight className="w-4 h-4" />
                     </div>
