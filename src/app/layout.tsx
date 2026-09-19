@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Poppins, Montserrat } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/config/site";
@@ -32,6 +33,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ||
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  verification: {
+    google: "2i0BCaOHJIRVLBDE6ZnQViEKpR2u5Pu36z_FInFH2Bw",
+  },
   icons: {
     icon: [
       { url: "/images/rtl-favicon.png", sizes: "any" },
@@ -187,6 +191,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${poppins.variable} ${montserrat.variable} font-sans`}>
       <head>
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-BDJJ5QD8LD"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BDJJ5QD8LD');
+            `,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
